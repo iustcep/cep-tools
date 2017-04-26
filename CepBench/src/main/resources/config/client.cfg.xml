@@ -1,0 +1,24 @@
+<configuration>
+
+    <defaultHost>localhost</defaultHost>
+    <defaultPort>6789</defaultPort>
+
+    <events>
+        <event>
+            <eventTypeName>A</eventTypeName>
+            <eventRate>50</eventRate>
+        </event>
+
+        <event>
+            <eventTypeName>B</eventTypeName>
+            <eventRate>1000</eventRate>
+        </event>
+    </events>
+
+    <logs>
+        <log>
+            <!--<sentRateLogPath>C:/logs/info/sent_rate.csv</sentRateLogPath>-->
+            <sentRateLog>ON</sentRateLog>
+        </log>
+    </logs>
+</configuration>

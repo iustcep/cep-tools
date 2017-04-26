@@ -1,0 +1,24 @@
+package ac.iust.cep;
+
+import ac.iust.cep.monitor.server.Throughput;
+import ac.iust.cep.data.model.EventJava
+import ir.iust.cep.monitor.server.Throughput;
+
+declare EventJava
+@role(event)
+@expires( 40s )
+end
+
+rule "1"
+
+	no-loop
+    when
+        $p1 : EventJava(Integer.parseInt(getItems().get(1).getValue()) > 30) over window:time( 30s ) from entry-point ONE
+        and $p2 : EventJava(this after $p1, Integer.parseInt(getItems().get(1).getValue()) > Integer.parseInt($p1.getItems().get(1).getValue())) over window:time( 30s ) from entry-point ONE
+        and $p3 : EventJava(this after $p2, Integer.parseInt(getItems().get(1).getValue()) > Integer.parseInt($p2.getItems().get(1).getValue())) over window:time( 30s ) from entry-point ONE
+    then
+        retract($p1);
+        retract($p2);
+        retract($p3);
+        Throughput.doCalculate(1);
+end

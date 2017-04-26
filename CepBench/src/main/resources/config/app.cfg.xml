@@ -1,0 +1,7 @@
+<configuration>
+
+    <!--<serializationType>JAVA</serializationType>-->
+    <serializationType>PROTOCOL_BUFFER</serializationType>
+    <eventModel>GENERAL</eventModel>
+
+</configuration>

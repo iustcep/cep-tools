@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_package = "ir.iust.cep.rule_manager";
+option java_outer_classname = "EPRequest";
+
+message Event {
+
+    message RuleRate {
+        int32 rule_id = 1;
+        int32 rule_rate = 2;
+    }
+
+    uint64 ram_usage = 3;
+    uint64 cpu_usage = 4;
+    repeated RuleRate rule_rates = 5;
+
+}

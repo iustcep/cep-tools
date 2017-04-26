@@ -1,0 +1,34 @@
+package ac.iust.cep;
+
+import ac.iust.cep.monitor.server.Throughput;
+import ac.iust.cep.monitor.server.Latency;
+import ac.iust.cep.data.gen.Generated.EventProtocolBuffer;
+import ac.iust.cep.business.client.EventProducer
+import ir.iust.cep.monitor.server.Throughput
+import ir.iust.cep.monitor.server.Latency;
+
+declare EventProtocolBuffer
+    @role(event)
+    @expires(30s)
+end
+
+rule "1"
+
+	no-loop
+    when
+          $event1 : EventProtocolBuffer($event1_price_value : Integer.parseInt(getFiledValueByTag("price")) > 30) over window:time( 30s ) from entry-point ONE
+
+          and $event2 : EventProtocolBuffer(this after $event1,
+                    $event2_price_value : Integer.parseInt(getFiledValueByTag("price")) > $event1_price_value) over window:time( 30s ) from entry-point ONE
+
+          and $event3 : EventProtocolBuffer(this after $event2,
+                    Integer.parseInt(getFiledValueByTag("price")) > $event2_price_value) over window:time( 30s ) from entry-point ONE
+    then
+//        System.out.println($event3.getFiledValueByTag("time_stamp"));
+        long now = System.currentTimeMillis();
+//        System.out.println("1: " + (now - Long.parseLong($event3.getFiledValueByTag("time_stamp"))) + "");
+        retract($event3);
+        Throughput.doCalculate(1);
+        Latency.doCalculate(1, now - Long.parseLong($event3.getFiledValueByTag("time_stamp")));
+
+end

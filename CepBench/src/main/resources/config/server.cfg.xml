@@ -1,0 +1,25 @@
+<configuration>
+
+    <defaultPort>6789</defaultPort>
+
+    <engineName>DROOLS</engineName>
+    <!--<engineName>ESPER</engineName>-->
+
+    <rulesPath>src/main/resources/rules/drools/</rulesPath>
+    <!--<rulesPath>src/main/resources/rules/esper/</rulesPath>-->
+    <!--<rulesPath>rules/esper/</rulesPath>-->
+
+    <rulesNumber>4</rulesNumber>
+
+    <logs>
+        <log>
+            <receiveRateLog>ON</receiveRateLog>
+        </log>
+        <log>
+            <throughput>ON</throughput>
+        </log>
+        <log>
+            <latency>ON</latency>
+        </log>
+    </logs>
+</configuration>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="SENT_RATE" class="org.apache.log4j.FileAppender">
+        <!--<param name="File" value="C:/logs/info/sent_rate.csv"/>-->
+        <param name="File" value="./logs/sent_rate.csv"/>
+        <param name="Threshold" value="DEBUG"/>
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss},%m,%n"/>
+        </layout>
+    </appender>
+
+    <appender name="RECEIVE_RATE" class="org.apache.log4j.FileAppender">
+        <!--<param name="File" value="C:/logs/info/receive_rate.csv"/>-->
+        <param name="File" value="./logs/receive_rate.csv"/>
+        <param name="Threshold" value="DEBUG"/>
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss},%m,%n"/>
+        </layout>
+    </appender>
+
+    <appender name="LATENCY" class="org.apache.log4j.FileAppender">
+
+        <!--<param name="File" value="C:/logs/info/latency.csv"/>-->
+        <param name="File" value="./logs/latency.csv"/>
+        <param name="Threshold" value="DEBUG"/>
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss},%m,%n"/>
+        </layout>
+    </appender>
+
+    <appender name="THROUGHPUT" class="org.apache.log4j.FileAppender">
+        <!--<param name="File" value="C:/logs/info/throughput.csv"/>-->
+        <param name="File" value="./logs/throughput.csv"/>
+        <param name="Threshold" value="DEBUG"/>
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss},%m,%n"/>
+        </layout>
+    </appender>
+
+    <logger name="sent_rate">
+        <appender-ref ref="SENT_RATE"/>
+    </logger>
+
+    <logger name="receive_rate">
+        <appender-ref ref="RECEIVE_RATE"/>
+    </logger>
+
+    <logger name="latency">
+        <appender-ref ref="LATENCY"/>
+    </logger>
+
+    <logger name="throughput">
+        <appender-ref ref="THROUGHPUT"/>
+    </logger>
+
+</log4j:configuration>
